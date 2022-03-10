@@ -50,3 +50,27 @@ int main()
     }
     return 0;
 }
+
+// Cách 2:
+
+// #include <stdio.h>
+
+// int main()
+// {
+//     int t, n;
+//     long long k, cnt;
+//     scanf("%d", &t);
+//     while(t--)
+//     {
+//         scanf("%d", &n);
+//         scanf("%lld", &k);
+//         cnt = 0;
+//         while((k & 1) ^ 1)
+//         {
+//             ++cnt;
+//             k >>= 1;
+//         }
+//         printf("%lld\n", cnt + 1);
+//     }
+//     return 0;
+// }
