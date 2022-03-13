@@ -60,6 +60,7 @@ inline void DFS(int u)
 
 int main()
 {
+    faster();
     int t = 1, x, y;
     cin >> t;
     while(t--)
