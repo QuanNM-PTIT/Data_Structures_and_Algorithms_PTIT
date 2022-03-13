@@ -39,12 +39,12 @@ inline void Pre()
 
 inline void DFS(int u)
 {
+    bs[u] = 1;
     dis[u] = low[u] = cnt++;
     for(int &i : a[u])
     {
         if(!bs[i])
         {
-            bs[i] = 1;
             par[i] = u;
             DFS(i);
             low[u] = min(low[u], low[i]);
