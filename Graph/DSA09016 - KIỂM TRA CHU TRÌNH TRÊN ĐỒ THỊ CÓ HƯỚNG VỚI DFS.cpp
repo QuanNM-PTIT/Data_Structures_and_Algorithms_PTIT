@@ -22,7 +22,7 @@ using namespace std;
 
 bool check;
 
-void DFS(int x, vector<vector<int>> &a, vector<int> &b)
+inline void DFS(int x, vector<vector<int>> &a, vector<int> &b)
 {
     if(check) return;
     b[x] = 1;
