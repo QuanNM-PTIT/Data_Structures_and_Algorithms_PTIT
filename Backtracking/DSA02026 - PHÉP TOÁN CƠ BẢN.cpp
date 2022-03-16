@@ -20,8 +20,9 @@ using namespace std;
 #define all(x) (x).begin(), (x).end()
 #define endl '\n'
 
-vector<string> ans;
+string ans;
 char sign[] = {'+', '-'};
+bool ok;
 
 bool check(string &s)
 {
@@ -35,14 +36,19 @@ bool check(string &s)
 
 void Try(int i, string s)
 {
+    if(ok) return;
     if(i == s.sz)
     {
-        if(check(s)) ans.pb(s);
+        if(check(s))
+        {
+            ans = s;
+            ok = 1;
+        }
         return;
     }
     if(s[i] != '?')
     {
-        Try(i + 1, s);
+        if(!ok) Try(i + 1, s);
         return;
     }
     if(i == 3)
@@ -50,7 +56,7 @@ void Try(int i, string s)
         for (char j : sign)
         {
             s[i] = j;
-            Try(i + 1, s);
+            if(!ok) Try(i + 1, s);
         }
     }
     else if(!i or i == 5 or i == 10)
@@ -58,7 +64,7 @@ void Try(int i, string s)
         for (char j = '1'; j <= '9'; ++j)
         {
             s[i] = j;
-            Try(i + 1, s);
+            if(!ok) Try(i + 1, s);
         }
     }
     else
@@ -66,7 +72,7 @@ void Try(int i, string s)
         for(char j = '0'; j <= '9'; ++j)
         {
             s[i] = j;
-            Try(i + 1, s);
+            if(!ok) Try(i + 1, s);
         }
     }
 }
@@ -80,20 +86,17 @@ int main()
     cin.ignore();
     while(t--)
     {
+        ok = 0;
+        ans = "";
         getline(cin, s);
-        if (s[3] == '*' || s[3] == '/')
+        if (s[3] == '*' or s[3] == '/')
         {
             cout << "WRONG PROBLEM!\n";
             continue;
         }
         Try(0, s);
         if (ans.empty()) cout << "WRONG PROBLEM!\n";
-        else
-        {
-            sort(all(ans));
-            cout << ans[0] << "\n";
-        }
-        ans.clear();
+        else cout << ans << endl;
     }
     return 0;
 }
