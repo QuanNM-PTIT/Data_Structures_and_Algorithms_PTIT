@@ -14,23 +14,27 @@ using namespace std;
 #define FORD(i, a, b) for(int i = a; i >= b; i--)
 #define F(i, a, b) for(int i = a; i < b; ++i)
 #define FD(i, a, b) for(int i = a; i > b; --i)
-#define faster() ios_base::sync_with_stdio(0); cin.tie(NULL);cout.tie(NULL);
+#define faster() ios_base::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL);
 #define vi vector<int>
 #define vll vector<ll>
 #define all(x) (x).begin(), (x).end()
 #define endl '\n'
 
-bool check(int a[], int n, int k)
+inline string calc(vi &a, int &k)
 {
+    int n = a.sz, l, r;
     for(int i = 0; i < n; ++i)
     {
-        for(int j = i + 1; j < n; ++j)
+        l = i + 1;
+        r = n - 1;
+        while(l < r)
         {
-            if(a[i] + a[j] > k) break;
-            else if(binary_search(a + j + 1, a + n, k - a[i] - a[j])) return 1;
+            if(a[i] + a[l] + a[r] == k) return "YES";
+            if(a[i] + a[l] + a[r] < k) ++l;
+            else --r;
         }
     }
-    return 0;
+    return "NO";
 }
 
 int main()
@@ -41,11 +45,10 @@ int main()
     while(t--)
     {
         cin >> n >> k;
-        int a[n];
+        vi a(n);
         for(int &i : a) cin >> i;
-        sort(a, a + n);
-        if(check(a, n, k)) cout << "YES\n";
-        else cout << "NO\n";
+        sort(all(a));
+        cout << calc(a, k) << endl;
     }
     return 0;
 }
