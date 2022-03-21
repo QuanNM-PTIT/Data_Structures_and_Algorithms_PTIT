@@ -23,7 +23,7 @@ using namespace std;
 struct Node
 {
     int heSo, mu;
-    Node *next = NULL;
+    Node *next;
 };
 
 typedef Node* node;
