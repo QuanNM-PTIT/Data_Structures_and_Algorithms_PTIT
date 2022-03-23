@@ -1,5 +1,3 @@
-// Created by Nguyễn Mạnh Quân
-
 #include<bits/stdc++.h>
 
 using namespace std;
@@ -26,30 +24,28 @@ string s;
 inline bool check(vi &v)
 {
     s = "";
-    int cnt0 = 0, cnt1 = 0, ok = 0;
+    int cnt0 = 0, cnt1 = 0;
+    int max1 = 0, max0 = 0;
     for(int &i : v)
     {
         if(i)
         {
             s += c;
+            max0 = max(max0, cnt0);
             cnt0 = 0;
             ++cnt1;
-            if(cnt1 >= 5)
-                ok = 1;
         }
         else
         {
             s += dc;
+            max1 = max(max1, cnt1);
             cnt1 = 0;
             ++cnt0;
-            if(cnt0 == 5)
-            {
-                ok = 0;
-                break;
-            }
         }
     }
-    return ok;
+    max0 = max(max0, cnt0);
+    max1 = max(max1, cnt1);
+    return (max1 > max0 and max1 >= 5);
 }
 
 int main()
