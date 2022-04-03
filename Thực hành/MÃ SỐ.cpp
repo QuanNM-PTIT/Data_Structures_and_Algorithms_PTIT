@@ -68,7 +68,7 @@ void TryStr(int i)
                 TryStr(i + 1);
             else
                 printStr();
-            dd[j]= 0;
+            dd[j] = 0;
         }
     }
 }
