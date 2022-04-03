@@ -23,6 +23,7 @@ using namespace std;
 int dx[] = {-1, -1, -1, 0, 0, 1, 1, 1};
 int dy[] = {-1, 0, 1, -1, 1, -1, 0, 1};
 int n, m;
+
 vector<vector<int>> a(505, vector<int>(505));
 
 inline bool check(int x, int y)
