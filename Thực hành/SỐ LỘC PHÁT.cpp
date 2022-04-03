@@ -1,7 +1,7 @@
 // Created by Nguyễn Mạnh Quân
-
+ 
 #include<bits/stdc++.h>
-
+ 
 using namespace std;
 
 #define mp make_pair
@@ -14,7 +14,7 @@ using namespace std;
 #define FORD(i, a, b) for(int i = a; i >= b; i--)
 #define F(i, a, b) for(int i = a; i < b; ++i)
 #define FD(i, a, b) for(int i = a; i > b; --i)
-#define faster() ios_base::sync_with_stdio(0); cin.tie(NULL);cout.tie(NULL);
+#define faster() ios_base::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL);
 #define vi vector<int>
 #define vll vector<ll>
 #define all(x) (x).begin(), (x).end()
@@ -29,7 +29,7 @@ int main()
     {
         cin >> n;
         MAX = 1 << n;
-        vector<int> ans;
+        vector<ll> ans;
         for(int i = 0; i < MAX; ++i)
         {
             string s = "";
@@ -38,10 +38,10 @@ int main()
                     s += '8';
                 else
                     s += '6';
-            ans.pb(stoi(s));
+            ans.pb(stoll(s));
         }
         cout << ans.sz << endl;
-        for(int &i : ans)
+        for(ll &i : ans)
             cout << i << ' ';
         cout << endl;
     }
