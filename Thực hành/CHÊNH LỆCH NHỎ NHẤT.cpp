@@ -28,11 +28,11 @@ int main()
     while(t--)
     {
         cin >> n >> k;
-        vector<string> vs(k);
+        vector<string> vs(n);
         for(string &i : vs)
             cin >> i;
         vi v;
-        for(int i = 0; i < n; ++i)
+        for(int i = 0; i < k; ++i)
             v.pb(i);
         vector<vi> vvi;
         vvi.pb(v);
@@ -43,7 +43,7 @@ int main()
         {
             MAX = -1;
             MIN = 1e9;
-            for(int j = 0; j < k; ++j)
+            for(int j = 0; j < n; ++j)
             {
                 string s = "";
                 for(int &z : i)
