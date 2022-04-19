@@ -21,8 +21,8 @@ using namespace std;
 #define all(x) (x).begin(), (x).end()
 #define endl '\n'
 
-int Root[1005]; // root[i]: Gốc của đỉnh i
-int Size[1005]; // size[i]: Số con của gốc i
+int Root[1005]; // Root[i]: Gốc của đỉnh i
+int Size[1005]; // Size[i]: Số con của gốc i
 
 // Tìm gốc
 int findRoot(int x)
