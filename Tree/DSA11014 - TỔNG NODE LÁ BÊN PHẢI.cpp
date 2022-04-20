@@ -85,33 +85,15 @@ int main()
         while(n--)
         {
             cin >> par >> child >> c;
-            if(!m[par])
+            if(c == 'L')
             {
-                root = createNode(child);
-                if(c == 'L')
-                {
-                    root -> left = createNode(child);
-                    m[child] = root -> left;
-                }
-                else
-                {
-                    root -> right = createNode(child);
-                    m[child] = root -> right;
-                }
-                m[par] = root;
+                m[par] -> left = createNode(child);
+                m[child] = m[par] -> left;
             }
             else
             {
-                if(c == 'L')
-                {
-                    m[par] -> left = createNode(child);
-                    m[child] = m[par] -> left;
-                }
-                else
-                {
-                    m[par] -> right = createNode(child);
-                    m[child] = m[par] -> right;
-                }
+                m[par] -> right = createNode(child);
+                m[child] = m[par] -> right;
             }
         }
         sum = 0;
