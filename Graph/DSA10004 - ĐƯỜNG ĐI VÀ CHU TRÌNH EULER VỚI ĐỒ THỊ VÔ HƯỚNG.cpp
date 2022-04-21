@@ -27,26 +27,20 @@ int main()
     cin >> t;
     while(t--)
     {
-        int degc[1005] = {}, degt[1005] = {};
+        int deg[1005] = {};
         cin >> v >> e;
         while(e--)
         {
             cin >> x >> y;
-            ++degc[x];
-            ++degt[y];
+            ++deg[x];
+            ++deg[y];
         }
         int cnt = 0;
-        bool check = 1;
         for(int i = 1; i <= v; ++i)
-        {
-            cnt += (abs(degc[i] - degt[i]) == 1);
-            if(cnt > 2 or abs(degc[i] - degt[i]) > 1 or !degc[i] or !degt[i])
-            {
-                check = 0;
-                break;
-            }
-        }
-        if(check)
+            cnt += deg[i] & 1;
+        if(!cnt)
+            cout << 2 << endl;
+        else if(cnt == 2)
             cout << 1 << endl;
         else
             cout << 0 << endl;
