@@ -50,6 +50,7 @@ inline bool check(int v, int e, int m)
         {
             bs[u] = 1;
             ++c;
+            // Tô các đỉnh không kề với u cùng màu với u
             for(int j = 1; j <= v; ++j)
                 if(!dd[u][j])
                     bs[j] = 1;
