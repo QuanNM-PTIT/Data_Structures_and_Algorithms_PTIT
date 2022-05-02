@@ -23,8 +23,6 @@ using namespace std;
 ll val[200005], sum[200005];
 vector<int> a[200005];
 
-
-
 inline void DFS(int u)
 {
     for(int &i : a[u])
