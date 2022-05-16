@@ -44,7 +44,6 @@ void findPath(int s, int e)
     {
         cout << -1;
         return;
-        
     }
     vi res;
     while(s != e)
