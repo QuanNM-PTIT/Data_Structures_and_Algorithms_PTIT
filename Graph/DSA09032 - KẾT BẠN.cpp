@@ -20,39 +20,50 @@ using namespace std;
 #define all(x) (x).begin(), (x).end()
 #define endl '\n'
 
-vector<vi> edge(100005);
-bitset<100005> visited;
+int Root[100005], Size[100005];
+int n, m;
 
-int DFS(int u)
+inline int findRoot(int x)
 {
-    int ans = 1;
-    visited[u] = 1;
-    for(int i = 0; i < edge[u].sz; ++i) if(!visited[edge[u][i]]) ans += DFS(edge[u][i]);
-    return ans;
+    if(x == Root[x])
+        return x;
+    return Root[x] = findRoot(Root[x]);
+}
+
+inline void Union(int x, int y)
+{
+    int rootX = findRoot(x), rootY = findRoot(y);
+    if(rootX != rootY)
+    {
+        if(Size[rootX] < Size[rootY])
+            swap(rootX, rootY);
+        Root[rootY] = rootX;
+        Size[rootX] += Size[rootY];
+    }
 }
 
 int main()
 {
     faster();
-    int t = 1, n, m, x, y;
+    int t, x, y;
     cin >> t;
     while(t--)
     {
         cin >> n >> m;
         for(int i = 1; i <= n; ++i)
         {
-            edge[i].clear();
-            visited[i] = 0;
+            Root[i] = i;
+            Size[i] = 1;
         }
+        int MAX = -1;
         while(m--)
         {
             cin >> x >> y;
-            edge[x].pb(y);
-            edge[y].pb(x);
+            Union(x, y);
         }
-        int res = 0;
-        for(int i = 1; i <= n; ++i) if(!visited[i]) res = max(res, DFS(i));
-        cout << res << endl;
+        for(int i = 1; i <= n; ++i)
+            MAX = max(MAX, Size[Root[i]]);
+        cout << MAX << endl;
     }
     return 0;
 }
