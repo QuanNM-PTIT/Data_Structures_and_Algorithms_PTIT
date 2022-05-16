@@ -14,7 +14,7 @@ using namespace std;
 #define FORD(i, a, b) for(int i = a; i >= b; i--)
 #define F(i, a, b) for(int i = a; i < b; ++i)
 #define FD(i, a, b) for(int i = a; i > b; --i)
-#define faster() ios_base::sync_with_stdio(0); cin.tie(NULL);cout.tie(NULL);
+#define faster() ios_base::sync_with_stdio(0); cin.tie(NULL); cout.tie(NULL);
 #define vi vector<int>
 #define vll vector<ll>
 #define all(x) (x).begin(), (x).end()
@@ -28,7 +28,7 @@ struct Node
 
 typedef Node* binTree;
 
-inline binTree createNode(int val)
+binTree createNode(int val)
 {
     binTree res = new Node;
     res -> val = val;
@@ -36,57 +36,66 @@ inline binTree createNode(int val)
     return res;
 }
 
-inline void buildTree(binTree &root, int par, char c, int child)
-{
-    if(root == NULL)
-        return;
-    if(par == root -> val)
-    {
-        if(c == 'L')
-            root -> left = createNode(child);
-        else
-            root -> right = createNode(child);
-    }
-    buildTree(root -> left, par, c, child);
-    buildTree(root -> right, par, c, child);
-}
-
 bool check;
 
-inline void order(binTree root)
+void order(binTree A)
 {
-    if(!check or root == NULL)
+    if(!check)
         return;
-    if((root -> left == NULL and root -> right != NULL) or (root -> right == NULL and root -> left != NULL))
+    if(A)
     {
-        check = 0;
-        return;
+        if((A -> left == NULL and A -> right) or (A -> left and A -> right == NULL))
+        {
+            check = 0;
+            return;
+        }
+        if(A -> left)
+            order(A -> left);
+        if(A -> right)
+            order(A -> right);
     }
-    order(root -> left);
-    order(root -> right);
 }
 
 int main()
 {
     faster();
-    int t, n, par, child;
+    int t = 1, n, par, child;
     char c;
     cin >> t;
     while(t--)
     {
         cin >> n;
-        binTree root;
+        unordered_map<int, binTree> m;
         cin >> par >> child >> c;
-        root = createNode(par);
-        buildTree(root, par, c, child);
+        binTree T = createNode(par);
+        m[par] = T;
+        if(c == 'L')
+        {
+            m[par] -> left = createNode(child);
+            m[child] = m[par] -> left;
+        }
+        else
+        {
+            m[par] -> right = createNode(child);
+            m[child] = m[par] -> right;
+        }
         --n;
         while(n--)
         {
             cin >> par >> child >> c;
-            buildTree(root, par, c, child);
+            if(c == 'L')
+            {
+                m[par] -> left = createNode(child);
+                m[child] = m[par] -> left;
+            }
+            else
+            {
+                m[par] -> right = createNode(child);
+                m[child] = m[par] -> right;
+            }
         }
         check = 1;
-        order(root);
+        order(T);
         cout << check << endl;
     }
     return 0;
