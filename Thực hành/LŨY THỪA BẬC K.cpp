@@ -5,9 +5,6 @@
 
 using namespace std;
 
-#pragma GCC optimize("Ofast, no-stack-protector, unroll-loops, fast-math")
-#pragma GCC optimize("unroll-loops")
-#pragma GCC optimize("inline")
 #define mp make_pair
 #define fi first
 #define se second
