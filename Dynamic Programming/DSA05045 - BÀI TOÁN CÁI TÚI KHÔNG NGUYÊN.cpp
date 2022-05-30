@@ -30,11 +30,11 @@ int main()
     int t = 1;
     cin >> t;
     int n, w;
-    while(t--)
+    while (t--)
     {
         cin >> n >> w;
         vector<pair<pair<int, int>, float>> v(n);
-        for(pair<pair<int, int>, float> &i : v)
+        for (pair<pair<int, int>, float> &i : v)
         {
             cin >> i.fi.fi >> i.fi.se;
             i.se = 1.0 * i.fi.fi / i.fi.se;
@@ -43,16 +43,16 @@ int main()
         int sumVal, idx;
         float sumWeight;
         idx = sumVal = sumWeight = 0;
-        for(int i = 0; i < n; ++i)
+        for (int i = 0; i < n; ++i)
         {
-            if(sumVal <= w)
+            if (sumVal <= w)
             {
                 sumVal += v[i].fi.se;
                 sumWeight += v[i].fi.fi;
                 idx = i;
             }
         }
-        if(sumVal > w)
+        if (sumVal > w)
             sumWeight -= 1.0 * (sumVal - w) * v[idx].se;
         cout << setprecision(2) << fixed << sumWeight << endl;
     }
