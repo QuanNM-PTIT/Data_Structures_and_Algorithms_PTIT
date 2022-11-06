@@ -1,4 +1,4 @@
-// Thuật toán Disjoin Set Union
+// Cấu trúc dữ liệu Disjoin Set Union
 // Created by Nguyễn Mạnh Quân
 
 #include<bits/stdc++.h>
